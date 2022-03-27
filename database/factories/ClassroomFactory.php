@@ -18,6 +18,7 @@ class ClassroomFactory extends Factory
             'class_id' => $this->faker->randomNumber(5, true),
             'lesson_id' => $this->faker->randomNumber(5, true),
             'user_id' => $this->faker->randomNumber(5, true),
+            'link_g_meet' => $this->faker->url(),
         ];
     }
 }

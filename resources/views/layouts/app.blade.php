@@ -36,7 +36,7 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">Dashboard</a>
-        <a href="#">Classroom</a>
+        <a href="classroom">Classroom</a>
         <a href="#">Media</a>
         <a href="#">Subject</a>
         <a href="#">Internship</a>

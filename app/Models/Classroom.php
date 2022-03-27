@@ -16,5 +16,6 @@ class Classroom extends Model
         'class_id',
         'lesson_id',
         'user_id',
+        'link_g_meet',
     ];
 }
