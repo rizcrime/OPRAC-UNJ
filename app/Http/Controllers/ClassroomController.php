@@ -23,4 +23,9 @@ class ClassroomController extends Controller
         return view('classroom.index', compact('data'));
     }
 
+    function create()
+    {
+        
+    }
+
 }
