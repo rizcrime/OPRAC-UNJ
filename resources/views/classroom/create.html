@@ -1,24 +1,86 @@
-@extends('layouts.app')
-@section('content')
-<div class="container">
-    <div class="row" style="justify-content: center; margin: 2%;">
-        @foreach($data as $item)
-        <div class="col-sm-6 card" style="width: 18rem; margin: 2%;">
-            <img src="{{ asset('media/logo-google-meet.png') }}" class="card-img-top">
-            <div class="card-body">
-                <a class="card-text" href="{{ $item->link }}">{{ $item->users_name }}</a>
-            </div>
-        </div>
-        @endforeach
-        @if(Auth::user()->role != 'Mahasiswa')
-        <div id="create-class" class="col-sm-6 card" style="width: 18rem; margin: 2%;">
-            <img src="{{ asset('media/add.png') }}" class="card-img-top">
-            <div class="card-body">
-                <a class="card-text" href="#modal" data-toggle="modal">Tambah Kelas</a>
-            </div>
-        </div>
-        @endif
-    </div>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bootstrap Modal Alignment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+
+    <style>
+        /* Text alignment for body */
+        body {
+            text-align: center;
+        }
+
+        /* Styling h1 tag */
+        h1 {
+            color: green;
+            text-align: center;
+        }
+
+        /* Styling modal */
+        .modal:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        .modal-dialog {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .modal .modal-content {
+            padding: 20px 20px 20px 20px;
+            -webkit-animation-name: modal-animation;
+            -webkit-animation-duration: 0.5s;
+            animation-name: modal-animation;
+            animation-duration: 0.5s;
+        }
+
+        @-webkit-keyframes modal-animation {
+            from {
+                top: -100px;
+                opacity: 0;
+            }
+
+            to {
+                top: 0px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes modal-animation {
+            from {
+                top: -100px;
+                opacity: 0;
+            }
+
+            to {
+                top: 0px;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>
+        GeeksforGeeks
+    </h1>
+    <p>
+        A Computer Science Portal for Geeks
+    </p>
+    <a href="#signupModal" data-toggle="modal">
+        Sign-Up</a>
+
     <div class="modal" id="signupModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
         <div class="modal-dialog">
@@ -94,5 +156,7 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
+
+</body>
+
+</html>
