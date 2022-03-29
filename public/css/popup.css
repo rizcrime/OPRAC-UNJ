@@ -9,13 +9,11 @@ h1 {
 
 .modal:before {
     content: "";
-    display: inline-block;
     height: 100%;
     vertical-align: middle;
 }
 
 .modal-dialog {
-    display: inline-block;
     vertical-align: middle;
 }
 
@@ -32,7 +30,6 @@ h1 {
         top: -100px;
         opacity: 0;
     }
-
     to {
         top: 0px;
         opacity: 1;
@@ -44,7 +41,6 @@ h1 {
         top: -100px;
         opacity: 0;
     }
-
     to {
         top: 0px;
         opacity: 1;
