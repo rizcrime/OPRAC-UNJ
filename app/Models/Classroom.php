@@ -13,9 +13,9 @@ class Classroom extends Model
 
     protected $fillable = [
         'logo',
-        'class_id',
-        'lesson_id',
-        'user_id',
+        'class',
+        'lesson',
+        'members',
         'link_g_meet',
     ];
 }

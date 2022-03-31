@@ -72,9 +72,9 @@
                             <label class="col-md-4 col-form-label text-md-end" for="role">{{ __('Division') }}</label>
                             <div class="col-md-6">
                                 <select class="form-control" name="role" id="role">
-                                    <option value="dosen">Dosen</option>
-                                    <option value="pendamping">Pendamping</option>
-                                    <option value="mahasiswa">Mahasiswa</option>
+                                    @foreach ($role = DB::table('roles')->get() as $role )
+                                    <option value="{{$role->code}}">{{$role->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
