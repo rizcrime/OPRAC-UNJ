@@ -22,5 +22,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/classroom', 'ClassroomController@index');
+    Route::get('/classroom', 'ClassroomController@index')->name('getClassroom');
 });
+
+
+Route::post('/classroomstore', 'ClassroomController@store')->name('classroom.post');

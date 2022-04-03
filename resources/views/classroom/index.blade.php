@@ -6,7 +6,7 @@
         <div class="col-sm-6 card" style="width: 18rem; margin: 2%;">
             <img src="{{ asset('media/logo-google-meet.png') }}" class="card-img-top">
             <div class="card-body">
-                <a class="card-text" href="{{ $item->link }}">{{ $item->lesson }}</a>
+                <a class="card-text" href="{{ $item->link }}">{{ $item->lessonName }}</a>
             </div>
         </div>
         @endforeach
@@ -30,20 +30,21 @@
             </div>
             <!-- Modal body -->
             <div class="inputs">
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{route('classroom.post')}}">
                     @csrf
                     <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Room Master') }}</label>
                         <div class="col-md-6">
-                            <input value="{{Auth::User()->name}}" id="name" type="text" class="form-control" readonly>
+                            <input value="{{Auth::User()->name}}" id="rm" name="rm" type="text" class="form-control" readonly disabled>
+                            <input type="hidden" id="rm" name="rm" type="text" class="form-control" value="{{Auth::User()->id}}">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Dosen') }}</label>
                         <div class="col-md-6">
-                            <select class="form-control" name="role" id="role">
+                            <select class="form-control" name="dosen" id="dosen">
                                 @foreach ($allDosen as $allDosen)
-                                <option value="{{$allDosen->code}}">{{$allDosen->userName}}</option>
+                                <option value="{{$allDosen->idDosen}}">{{$allDosen->userName}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -51,9 +52,9 @@
                     <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Pengawas') }}</label>
                         <div class="col-md-6">
-                            <select class="form-control" name="role" id="role">
+                            <select class="form-control" name="pengawas" id="pengawas">
                                 @foreach ($allPengawas as $allPengawas)
-                                <option value="{{$allPengawas->code}}">{{$allPengawas->userName}}</option>
+                                <option value="{{$allPengawas->idPengawas}}">{{$allPengawas->userName}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -61,9 +62,9 @@
                     <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Pelajaran') }}</label>
                         <div class="col-md-6">
-                            <select class="form-control" name="role" id="role">
-                                @foreach ($classroom as $classroom)
-                                <option value="{{$classroom->code}}">{{$classroom->lesson}}</option>
+                            <select class="form-control" name="pelajaran" id="pelajaran">
+                                @foreach ($lesson as $lesson)
+                                <option value="{{$lesson->code}}">{{$lesson->name}}</option>
                                 @endforeach
                             </select>
                         </div>
