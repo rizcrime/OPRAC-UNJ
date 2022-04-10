@@ -16,7 +16,7 @@ class CreateClassroomsTable extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->text('logo')->nullable();
-            $table->foreignId('class');
+            $table->text('classname');
             $table->foreignId('lesson');
             $table->string('members')->nullable();
             $table->string('link_g_meet')->unique();

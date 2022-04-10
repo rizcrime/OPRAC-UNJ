@@ -12,8 +12,9 @@ class Classroom extends Model
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
+        'id',
         'logo',
-        'class',
+        'classname',
         'lesson',
         'members',
         'link_g_meet',

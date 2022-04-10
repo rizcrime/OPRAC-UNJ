@@ -13,11 +13,10 @@ class ClassroomController extends Controller
     {
         $this->middleware(function($request, $next){
             $mine = Auth::user()->id;
-            $value = "3";
             $this->classroom = DB::table('classrooms')
             ->join('lessons', 'classrooms.lesson', 'lessons.code')
-            ->select('classrooms.link_g_meet as link', 'lessons.name as lessonName', 'members')
-            ->whereRaw("FIND_IN_SET('3',members)")
+            ->select('classrooms.link_g_meet as link', 'classrooms.classname as classname', 'members', 'classrooms.id as id')
+            ->whereRaw("FIND_IN_SET($mine,members)")
             ->get();
             $this->lesson = DB::table('lessons')
             ->select('code as code', 'name as name')
@@ -37,6 +36,11 @@ class ClassroomController extends Controller
             ->select('users.name as userName', 'roles.name as roleName', 'roles.code as code', 'users.id as idPengawas')
             ->where('roles.name', '=', 'pengawas')
             ->get();
+            $this->allMahs = DB::table('users')
+            ->join('roles', 'users.role', 'roles.code')
+            ->select('users.name as userName', 'roles.name as roleName', 'roles.code as code', 'users.id as idMhs')
+            ->where('roles.name', '=', 'mahasiswa')
+            ->get();
             return $next($request);
         });
     }
@@ -47,24 +51,34 @@ class ClassroomController extends Controller
         $authRole = $this->authRole->roleName;
         $allDosen = $this->allDosen;
         $allPengawas = $this->allPengawas;
+        $allMahs = $this->allMahs;
         $lesson = $this->lesson;
         $array = explode(',', $classroom);
-        return view('classroom.index', compact('classroom', 'allPengawas', 'authRole', 'allDosen', 'lesson'));
+        return view('classroom.index', compact('classroom', 'allPengawas', 'allMahs', 'authRole', 'allDosen', 'lesson'));
     }
 
     function store(Request $request)
     {
+        $cn = $request->classname;
         $rm = $request->rm;
         $dosen = $request->dosen;
         $pengawas = $request->pengawas;
+        $students = implode(',', array_values($request['student']));
         $pelajaran = $request->pelajaran;
+        $link = $request->link;
         Classroom::create([
-            'members' => "$rm,$dosen,$pengawas",
+            'members' => "$rm,$dosen,$pengawas,$students",
             'lesson' => $pelajaran,
-            'class' => '12345',
-            'link_g_meet' => 'https://meet.google.com/iussisd'
+            'classname' => $cn,
+            'link_g_meet' => $link
         ]);
-        return redirect()->route('getClassroom')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect('/classroom')->with(['success' => 'Data Berhasil Disimpan!']);
+    }
+
+    public function destroy($id)
+    {
+        DB::table('classrooms')->where('id', $id)->delete();
+        return redirect('/classroom')->with('success','Data Berhasil Dihapus!');
     }
 
 }

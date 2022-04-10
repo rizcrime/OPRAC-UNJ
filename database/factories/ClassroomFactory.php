@@ -15,7 +15,7 @@ class ClassroomFactory extends Factory
     {
         return [
             'logo' => $this->faker->image(null, 640, 480),
-            'class' => $this->faker->randomNumber(5, true),
+            'classname' => $this->faker->words(3, true),
             'lesson' => $this->faker->randomNumber(5, true),
             'members' => $this->faker->words(3, true),
             'link_g_meet' => $this->faker->url(),
