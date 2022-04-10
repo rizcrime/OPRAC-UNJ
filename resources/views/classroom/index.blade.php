@@ -4,7 +4,7 @@
     <div class="row" style="justify-content: center; margin: 2%;">
         @foreach($classroom as $item)
         <div class="col-sm-6 card" style="width: 18rem; margin: 2%; padding: 5px;">
-            <a href="classroomdelete/{{ $item->id }}"><button onclick="return confirm('yakin?');" type="button" class="btn-close" aria-label="Close"></button></a>
+            <a href="classroomdelete/{{ $item->id }}"><button onclick="return confirm('yakin?');" class="btn-close" aria-label="Close"></button></a>
             <img style="padding: 5%; width: 70%; height: 70%; margin: auto;"
                 src="{{ asset('media/logo-google-meet.png') }}" class="card-img-top">
             <div class="card-body" style="margin-bottom: 20px;">

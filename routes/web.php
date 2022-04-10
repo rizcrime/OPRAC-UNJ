@@ -23,6 +23,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/classroom', 'ClassroomController@index')->name('getClassroom');
+    Route::get('/classroomdelete/{id}', 'ClassroomController@destroy');
+    Route::post('/classroomstore', 'ClassroomController@store')->name('classroom.post');
 });
-Route::get('/classroomdelete/{id}', 'ClassroomController@destroy');
-Route::post('/classroomstore', 'ClassroomController@store')->name('classroom.post');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/subject', 'SubjectController@index');
+    Route::get('/subjectdelete/{id}', 'SubjectController@destroy');
+    Route::post('/subjectstore', 'SubjectController@store')->name('subject.post');
+});

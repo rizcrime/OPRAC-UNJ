@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Classroom;
 use App\Models\Lesson;
 use App\Models\Role;
+use App\Models\Subject;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         Classroom::factory(3)->create();
         Lesson::factory(3)->create();
         Role::factory(3)->create();
+        Subject::factory(3)->create();
     }
 }

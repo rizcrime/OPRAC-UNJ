@@ -57,8 +57,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">Dashboard</a>
         <a href="classroom">Classroom</a>
-        <a href="#">Media</a>
-        <a href="#">Subject</a>
+        <a href="subject">Subject</a>
         <a href="#">Internship</a>
         <a href="#">Accompaniment</a>
         <a href="#">Evaluation</a>

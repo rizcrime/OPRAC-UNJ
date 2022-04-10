@@ -1,0 +1,21 @@
+.center {
+    text-align: center;
+}
+
+#download {
+    background-color: #0cf000;
+}
+
+#delete {
+    background-color: #ff2121;
+}
+
+.a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.action:hover {
+    font-weight: bold;
+    color: cornsilk;
+}
