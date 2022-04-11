@@ -4,15 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Gate;
-use Datatables;
-use File;
-use Illuminate\Support\Facades\Auth;
-use App\Label;
-use App\Http\Requests\Task\StoreTaskRequest;
-use Ramsey\Uuid\Uuid;
-use Carbon\Carbon;
+use App\Models\Subject;
 
 class SubjectController extends Controller
 {
@@ -35,18 +27,18 @@ class SubjectController extends Controller
         $title = $request->title;
         $desc = $request->desc;
         // File Handler
-        $link = $request->file('file');
-        $filename = optional($link)->getClientOriginalName();
-        $filePath = "promag/tasks/uploaded-$filename.pdf";
-        $name =  "https://cdn.erakomp.co.id/$filePath";
-        Storage::disk('oss')->put($filePath, file_get_contents($link));
+        $metafile = $request->file;
+        $extension = $metafile->getClientOriginalExtension();
+        $filepath = 'C:\xampp_new\htdocs\file\subject';
+        $link = "$filepath\\$title.$extension";
+        $metafile->move($filepath, "$title.$extension");
 
-        Classroom::create([
+        Subject::create([
             'title' => $title,
             'description' => $desc,
-            'file' => ($request->has('file')) ?  $name : "0",
+            'file' => ($request->has('file')) ?  "$link" : "no file",
         ]);
-        return redirect('/classroom')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect('/subject')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     public function destroy($id)

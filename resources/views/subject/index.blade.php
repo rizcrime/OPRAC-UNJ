@@ -1,8 +1,7 @@
 @extends('layouts.app')
 <link href="{{ asset('css/table.css') }}" rel="stylesheet">
-<link href="{{ asset('css/fab.css') }}" rel="stylesheet">
-@section('content')
-<div class="card">
+<link href="{{ asset('css/fab.css') }}" rel="stylesheet"> @section('content')
+<div class="card" style="margin-bottom: 100px;">
     <div class="card-body">
         <div class="card-title">
             <h1 style="text-align: center;">Subject</h1>
@@ -22,7 +21,7 @@
                     <tr id="rowT">
                         <td class="center">{{ $loop->index+1 }}</td>
                         <td>{{ $subject->title }}</td>
-                        <td>{{ $subject->file }}</td>
+                        <td>{{ $subject->description }}</td>
                         <td class="center"><a href="subjectdelete/{{ $subject->id }}" class="a"><button class="action" onclick="return confirm('yakin?');" id="delete">Delete</button></a></td>
                         <td class="center"><a href="{{ $subject->file }}" class="a"><button class="action" id="download">Lihat</button></a></td>
                     </tr>
@@ -51,13 +50,13 @@
                         <label class="col-md-4 col-form-label text-md-end" for="student">{{ __('Nama Judul')
                             }}</label>
                         <div class="col-md-6">
-                            <input id="filename" name="filename" class="form-control" required>
+                            <input id="title" name="title" class="form-control" required>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="formFile" class="col-md-4 col-form-label text-md-end">File Upload</label>
                         <div class="col-md-6">
-                            <input type="file" id="file" class="file">
+                            <input type="file" id="file" name="file" class="file">
                         </div>
                     </div>
                     <div class="row mb-3">
