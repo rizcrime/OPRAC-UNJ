@@ -18,4 +18,11 @@ class Classroom extends Model
         'user_id',
         'link_g_meet',
     ];
+
+    public function accompaniment()
+    {
+        return $this->hasMany(Accompaniment::class, 'id')
+            ->select('title');
+    }
+
 }

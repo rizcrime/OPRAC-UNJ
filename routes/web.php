@@ -24,3 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/classroom', 'ClassroomController@index');
 });
+
+Route::prefix('accompaniment')->group(function () {
+    Route::get('/index', 'AccompanimentController@index');
+});
