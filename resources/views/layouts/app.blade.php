@@ -55,11 +55,11 @@
 <body>
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Dashboard</a>
-        <a href="classroom">Classroom</a>
-        <a href="subject">Subject</a>
+        <a href="../home">Dashboard</a>
+        <a href="../classroom">Classroom</a>
+        <a href="../subject">Subject</a>
         <a href="#">Internship</a>
-        <a href="#">Accompaniment</a>
+        <a href="accompaniment/index">Accompaniment</a>
         <a href="#">Evaluation</a>
     </div>
     <div id="app">

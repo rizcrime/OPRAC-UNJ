@@ -32,3 +32,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/subjectdelete/{id}', 'SubjectController@destroy');
     Route::post('/subjectstore', 'SubjectController@store')->name('subject.post');
 });
+
+Route::get('accompaniment/index', 'AccompanimentController@index');

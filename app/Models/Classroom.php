@@ -19,4 +19,9 @@ class Classroom extends Model
         'members',
         'link_g_meet',
     ];
+
+    public function accompaniments()
+    {
+        return $this->hasMany(Accompaniment::class, 'id', 'classroom');
+    }
 }
