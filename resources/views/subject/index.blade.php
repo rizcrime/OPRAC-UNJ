@@ -50,13 +50,13 @@
                         <label class="col-md-4 col-form-label text-md-end" for="student">{{ __('Nama Judul')
                             }}</label>
                         <div class="col-md-6">
-                            <input id="title" name="title" class="form-control" required>
+                            <input onkeyup="symbolBoundaries('title')" id="title" name="title" class="form-control" required>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="formFile" class="col-md-4 col-form-label text-md-end">File Upload</label>
+                        <label for="formFile" class="col-md-4 col-form-label text-md-end">File Upload(*pdf)</label>
                         <div class="col-md-6">
-                            <input type="file" id="file" name="file" class="file">
+                            <input type="file" onchange="validateSize(this, 10240)" accept="application/pdf" id="file" name="file" class="file">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -78,4 +78,5 @@
         </div>
     </div>
 </div>
+
 @endsection

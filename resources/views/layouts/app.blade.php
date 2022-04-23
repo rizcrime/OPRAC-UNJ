@@ -36,6 +36,8 @@
     <!-- Styles from own code -->
     <link href="{{ asset('css/popup.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
+    <script src=" {{ asset('js/upload_size.js') }} "></script>
+    <script src=" {{ asset('js/char_boundaries.js') }} "></script>
 
     {{-- Styles from 3rd partition --}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />

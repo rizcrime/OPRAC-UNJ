@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Subject;
 
 class SubjectController extends Controller
@@ -29,7 +30,7 @@ class SubjectController extends Controller
         // File Handler
         $metafile = $request->file;
         $extension = $metafile->getClientOriginalExtension();
-        $filepath = 'C:\xampp_new\htdocs\file\subject';
+        $filepath = 'media/subject/file';
         $link = "$filepath\\$title.$extension";
         $metafile->move($filepath, "$title.$extension");
 
@@ -46,4 +47,5 @@ class SubjectController extends Controller
         DB::table('subjects')->where('id', $id)->delete();
         return redirect('/subject')->with('success','Data Berhasil Dihapus!');
     }
+
 }

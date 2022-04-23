@@ -10,7 +10,6 @@ class AccompanimentController extends Controller
     public function index()
     {
         $data = Accompaniment::find(1);
-        dd($data->classrooms->classname);
         return view('accompaniment.index', compact('data'));
     }
 }

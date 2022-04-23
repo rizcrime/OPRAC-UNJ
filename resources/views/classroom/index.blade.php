@@ -3,13 +3,10 @@
     <div class="row" style="justify-content: center; margin: 2%">
         @foreach($classroom as $item)
         <div class="col-sm-6 card" style="width: 18rem; margin: 2%; padding: 5px">
-            <a href="classroomdelete/{{ $item->id }}"><button
-                    onclick="return confirm('yakin?');"
-                    class="btn-close"
-                    aria-label="Close"
-                ></button
-            ></a>
-            <img style="padding: 5%; width: 70%; height: 70%; margin: auto" src="{{ asset('media/logo-google-meet.png') }}" class="card-img-top" />
+            <a href="classroomdelete/{{ $item->id }}"><button onclick="return confirm('yakin?');" class="btn-close"
+                    aria-label="Close"></button></a>
+            <img style="padding: 5%; width: 70%; height: 70%; margin: auto"
+                src="{{ asset($item->logo) }}" class="card-img-top" />
             <div class="card-body" style="margin-bottom: 20px">
                 <a style="
                         font-weight: 700;
@@ -21,23 +18,14 @@
                         line-clamp: 2;
                         -webkit-box-orient: vertical;
                     " class="card-text" href="{{ $item->link }}">{{
-                    $item->classname }}</a
-                >
+                    $item->classname }}</a>
             </div>
         </div>
         @endforeach @if($authRole != 'mahasiswa')
-        <div
-            id="create-class"
-            class="col-sm-6 card"
-            style="width: 18rem; margin: 2%"
-        >
+        <div id="create-class" class="col-sm-6 card" style="width: 18rem; margin: 2%">
             <div class="card-body">
-                <a href="#signupModal" data-toggle="modal"
-                    ><img
-                        src="{{ asset('media/add.png') }}"
-                        width="100%"
-                        height="100%"
-                /></a>
+                <a href="#signupModal" data-toggle="modal"><img src="{{ asset('media/add.png') }}" width="100%"
+                        height="100%" /></a>
             </div>
         </div>
         @endif
@@ -55,56 +43,32 @@
             </div>
             <!-- Modal body -->
             <div class="inputs">
-                <form method="POST" action="{{ route('classroom.post') }}">
+                <form method="POST" action="{{ route('classroom.post') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
-                        <label class="col-md-4 col-form-label text-md-end" for="student">{{ __("Nama Kelas") }}</label
-                        >
+                        <label for="formFile" class="col-md-4 col-form-label text-md-end">Logo Kelas(*Image)</label>
                         <div class="col-md-6">
-                            <input
-                                id="classname"
-                                name="classname"
-                                class="form-control"
-                                required
-                            />
+                            <input type="file" onchange="validateSize(this, 1024)" accept="image/png" id="file" name="file" class="file">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label
-                            for="name"
-                            class="col-md-4 col-form-label text-md-end"
-                            >{{ __("Room Master") }}</label
-                        >
+                        <label class="col-md-4 col-form-label text-md-end" for="student">{{ __("Nama Kelas") }}</label>
                         <div class="col-md-6">
-                            <input
-                                value="{{Auth::User()->name}}"
-                                id="rm"
-                                name="rm"
-                                class="form-control"
-                                readonly
-                                disabled
-                            />
-                            <input
-                                type="hidden"
-                                id="rm"
-                                name="rm"
-                                class="form-control"
-                                value="{{Auth::User()->id}}"
-                            />
+                            <input onkeyup="symbolBoundaries('classname')" id="classname" name="classname" class="form-control" required />
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label
-                            for="name"
-                            class="col-md-4 col-form-label text-md-end"
-                            >{{ __("Dosen") }}</label
-                        >
+                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __("Room Master") }}</label>
                         <div class="col-md-6">
-                            <select
-                                class="form-control"
-                                name="dosen"
-                                id="dosen"
-                            >
+                            <input value="{{Auth::User()->name}}" id="rm" name="rm" class="form-control" readonly
+                                disabled />
+                            <input type="hidden" id="rm" name="rm" class="form-control" value="{{Auth::User()->id}}" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __("Dosen") }}</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="dosen" id="dosen">
                                 @foreach ($allDosen as $allDosen)
                                 <option value="{{$allDosen->idDosen}}">
                                     {{$allDosen->userName}}
@@ -114,17 +78,9 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label
-                            for="name"
-                            class="col-md-4 col-form-label text-md-end"
-                            >{{ __("Pembimbing") }}</label
-                        >
+                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __("Pembimbing") }}</label>
                         <div class="col-md-6">
-                            <select
-                                class="form-control"
-                                name="pengawas"
-                                id="pengawas"
-                            >
+                            <select class="form-control" name="pengawas" id="pengawas">
                                 @foreach ($allPengawas as $allPengawas)
                                 <option value="{{$allPengawas->idPengawas}}">
                                     {{$allPengawas->userName}}
@@ -134,17 +90,9 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label
-                            for="name"
-                            class="col-md-4 col-form-label text-md-end"
-                            >{{ __("Pelajaran") }}</label
-                        >
+                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __("Pelajaran") }}</label>
                         <div class="col-md-6">
-                            <select
-                                class="form-control"
-                                name="pelajaran"
-                                id="pelajaran"
-                            >
+                            <select class="form-control" name="pelajaran" id="pelajaran">
                                 @foreach ($lesson as $lesson)
                                 <option value="{{$lesson->code}}">
                                     {{$lesson->name}}
@@ -154,34 +102,16 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label
-                            class="col-md-4 col-form-label text-md-end"
-                            for="student"
-                            >{{ __("Link Conference") }}</label
-                        >
+                        <label class="col-md-4 col-form-label text-md-end" for="student">{{ __("Link Conference")
+                            }}</label>
                         <div class="col-md-6">
-                            <input
-                                id="link"
-                                name="link"
-                                class="form-control"
-                                required
-                            />
+                            <input id="link" name="link" class="form-control" required />
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label
-                            class="col-md-4 col-form-label text-md-end"
-                            for="student"
-                            >{{ __("Mahasiswa") }}</label
-                        >
+                        <label class="col-md-4 col-form-label text-md-end" for="student">{{ __("Mahasiswa") }}</label>
                         <div class="col-md-6">
-                            <select
-                                required
-                                id="student"
-                                class="multiselect"
-                                name="student[]"
-                                multiple="multiple"
-                            >
+                            <select required id="student" class="multiselect" name="student[]" multiple="multiple">
                                 @foreach ($allMahs as $student)
                                 <option value="{{$student->idMhs}}">
                                     {{ $student->userName }}
@@ -211,3 +141,4 @@
 </script>
 
 @endsection
+
