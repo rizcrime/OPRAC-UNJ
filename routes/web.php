@@ -34,3 +34,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('accompaniment/index', 'AccompanimentController@index');
+Route::get('accompaniment/create/{id}', 'AccompanimentController@show')->name('accCreate');
+Route::post('accompaniment/store', 'AccompanimentController@store')->name('accStore');
+Route::get('accompaniment/delete/{id}', 'AccompanimentController@destroy')->name('accDel');

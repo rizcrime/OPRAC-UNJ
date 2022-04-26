@@ -1,6 +1,7 @@
 @extends('layouts.app')
+@section('content')
+<link href="{{ asset('css/fab.css') }}" rel="stylesheet">
 <link href="{{ asset('css/table.css') }}" rel="stylesheet">
-<link href="{{ asset('css/fab.css') }}" rel="stylesheet"> @section('content')
 <div class="card" style="margin-bottom: 100px;">
     <div class="card-body">
         <div class="card-title">
