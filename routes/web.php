@@ -17,9 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('home', function () {
+    // hanya user yang verified yang bisa mengakses route ini
+})->middleware('verified');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/classroom', 'ClassroomController@index')->name('getClassroom');
