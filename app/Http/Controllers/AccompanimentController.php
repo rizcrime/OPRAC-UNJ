@@ -10,6 +10,11 @@ use DB;
 
 class AccompanimentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
     public function index()
     {
         $data = Accompaniment::with('classrooms')->get();

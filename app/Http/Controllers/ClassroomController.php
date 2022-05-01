@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Classroom;
 
 class ClassroomController extends Controller
 {
     function __construct()
     {
+        $this->middleware(['auth', 'verified']);
         $this->middleware(function($request, $next){
             $mine = Auth::user()->id;
             $this->classroom = DB::table('classrooms')
@@ -35,7 +35,7 @@ class ClassroomController extends Controller
             $this->allPengawas = DB::table('users')
             ->join('roles', 'users.role', 'roles.code')
             ->select('users.name as userName', 'roles.name as roleName', 'roles.code as code', 'users.id as idPengawas')
-            ->where('roles.name', '=', 'pengawas')
+            ->where('roles.name', '=', 'pembimbing')
             ->get();
             $this->allMahs = DB::table('users')
             ->join('roles', 'users.role', 'roles.code')

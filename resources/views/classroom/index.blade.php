@@ -5,8 +5,8 @@
         <div class="col-sm-6 card" style="width: 18rem; margin: 2%; padding: 5px">
             <a href="classroomdelete/{{ $item->id }}"><button onclick="return confirm('yakin?');" class="btn-close"
                     aria-label="Close"></button></a>
-            <img style="padding: 5%; width: 70%; height: 70%; margin: auto"
-                src="{{ asset($item->logo) }}" class="card-img-top" />
+            <img style="padding: 5%; width: 70%; height: 70%; margin: auto" src="{{ asset($item->logo) }}"
+                class="card-img-top" />
             <div class="card-body" style="margin-bottom: 20px">
                 <a style="
                         font-weight: 700;
@@ -21,7 +21,7 @@
                     $item->classname }}</a>
             </div>
         </div>
-        @endforeach @if($authRole != 'mahasiswa')
+        @endforeach @if($authRole == 'dosen')
         <div id="create-class" class="col-sm-6 card" style="width: 18rem; margin: 2%">
             <div class="card-body">
                 <a href="#signupModal" data-toggle="modal"><img src="{{ asset('media/add.png') }}" width="100%"
@@ -48,13 +48,15 @@
                     <div class="row mb-3">
                         <label for="formFile" class="col-md-4 col-form-label text-md-end">Logo Kelas(*Image)</label>
                         <div class="col-md-6">
-                            <input type="file" onchange="validateSize(this, 1024)" accept="image/png" id="file" name="file" class="file">
+                            <input type="file" onchange="validateSize(this, 1024)" accept="image/png" id="file"
+                                name="file" class="file">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-md-4 col-form-label text-md-end" for="student">{{ __("Nama Kelas") }}</label>
                         <div class="col-md-6">
-                            <input onkeyup="symbolBoundaries('classname')" id="classname" name="classname" class="form-control" required />
+                            <input onkeyup="symbolBoundaries('classname')" id="classname" name="classname"
+                                class="form-control" required />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -141,4 +143,3 @@
 </script>
 
 @endsection
-

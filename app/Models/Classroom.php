@@ -24,4 +24,10 @@ class Classroom extends Model
     {
         return $this->hasMany(Accompaniment::class, 'id', 'classroom');
     }
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class, 'id', 'classroom');
+    }
+
 }

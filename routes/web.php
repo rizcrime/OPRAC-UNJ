@@ -21,9 +21,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('home', function () {
-    // hanya user yang verified yang bisa mengakses route ini
-})->middleware('verified');
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/classroom', 'ClassroomController@index')->name('getClassroom');
@@ -37,7 +35,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/subjectstore', 'SubjectController@store')->name('subject.post');
 });
 
-Route::get('accompaniment/index', 'AccompanimentController@index');
-Route::get('accompaniment/create/{id}', 'AccompanimentController@show')->name('accCreate');
-Route::post('accompaniment/store', 'AccompanimentController@store')->name('accStore');
-Route::get('accompaniment/delete/{id}', 'AccompanimentController@destroy')->name('accDel');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('accompaniment/index', 'AccompanimentController@index');
+    Route::get('accompaniment/create/{id}', 'AccompanimentController@show')->name('accCreate');
+    Route::post('accompaniment/store', 'AccompanimentController@store')->name('accStore');
+    Route::get('accompaniment/delete/{id}', 'AccompanimentController@destroy')->name('accDel');
+});

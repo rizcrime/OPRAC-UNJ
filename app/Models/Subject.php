@@ -12,6 +12,13 @@ class Subject extends Model
     protected $fillable = [
         'title',
         'file',
+        'classroom',
         'description'
     ];
+
+    public function classrooms()
+    {
+        return $this->belongsTo(Classroom::class, 'classroom', 'id');
+    }
+
 }

@@ -10,11 +10,6 @@
     background-color: #ff2121;
 }
 
-.a {
-    color: inherit;
-    text-decoration: inherit;
-}
-
 .action:hover {
     color: cornsilk;
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectsTable extends Migration
+class CreateAssignmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('file');
-            $table->string('description')->nullable();
-            $table->string('file_assignment')->nullable();
-            $table->timestamp('due')->nullable();
-            $table->string('classroom');
+            $table->string('student');
+            $table->string('subject');
+            $table->string('file')->nullable();
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('assignments');
     }
 }
