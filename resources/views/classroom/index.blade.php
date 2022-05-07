@@ -68,18 +68,6 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __("Dosen") }}</label>
-                        <div class="col-md-6">
-                            <select class="form-control" name="dosen" id="dosen">
-                                @foreach ($allDosen as $allDosen)
-                                <option value="{{$allDosen->idDosen}}">
-                                    {{$allDosen->userName}}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __("Pembimbing") }}</label>
                         <div class="col-md-6">
                             <select class="form-control" name="pengawas" id="pengawas">

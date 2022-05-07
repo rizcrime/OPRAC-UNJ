@@ -21,4 +21,8 @@ class Subject extends Model
         return $this->belongsTo(Classroom::class, 'classroom', 'id');
     }
 
+    public function assignments(){
+        return $this->hasMany(AssignmentController::class, 'id', 'subject');
+    }
+
 }

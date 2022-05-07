@@ -66,6 +66,7 @@
         <a href="../home">Dashboard</a>
         <a href="../classroom">Classroom</a>
         <a href="../subject">Subject</a>
+        <a href="../assignment">Assignment</a>
         <a href="../accompaniment/index">Accompaniment</a>
         <a href="#">Evaluation</a>
     </div>

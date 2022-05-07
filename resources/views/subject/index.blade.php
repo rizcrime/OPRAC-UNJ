@@ -78,7 +78,7 @@
                     <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __("Kelas") }}</label>
                         <div class="col-md-6">
-                            <select class="form-control" name="roomc" id="roomc">
+                            <select class="form-control" name="roomc" id="roomc" required>
                                 @foreach ($allClass as $allClass)
                                 <option value="{{$allClass->id}}">
                                     {{$allClass->classname}}
@@ -89,7 +89,7 @@
                     </div>
                     <div class="row mb-0">
                         <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
+                            <button id="upload" type="submit" class="btn btn-primary">
                                 {{ __('Submit') }}
                             </button>
                         </div>
@@ -99,5 +99,21 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#upload').bind("click", function () {
+            var txtTitle = $('#title').val();
+            var imgVal = $('#file').val();
+            var txtVal = $('#roomc').val();
+            if (imgVal == '' || txtVal == '' || txtTitle == '') {
+                alert("Semua Wajib di isi kecuali KETERANGAN");
+                return false;
+            }
+
+
+        });
+    });
+</script>
 
 @endsection

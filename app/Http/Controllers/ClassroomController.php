@@ -62,7 +62,6 @@ class ClassroomController extends Controller
     {
         $cn = $request->classname;
         $rm = $request->rm;
-        $dosen = $request->dosen;
         $pengawas = $request->pengawas;
         $students = implode(',', array_values($request['student']));
         $pelajaran = $request->pelajaran;
@@ -75,7 +74,7 @@ class ClassroomController extends Controller
         $metafile->move($filepath, "$cn.$extension");
 
         Classroom::create([
-            'members' => "$rm,$dosen,$pengawas,$students",
+            'members' => "$rm,$pengawas,$students",
             'lesson' => $pelajaran,
             'classname' => $cn,
             'link_g_meet' => $link,

@@ -8,6 +8,7 @@ use App\Models\Classroom;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\SpreadComma;
 
 class SubjectController extends Controller
 {
@@ -29,15 +30,11 @@ class SubjectController extends Controller
 
     public function index()
     {
+        $c = new SpreadComma;
         $allData = $this->allData;
         $myData = $this->mineData;
         $allClass = $this->allClass;
-        $joinClass = $this->joinClass;
-        $jc = [];
-        foreach ($joinClass as $val){
-            array_push($jc, $val->classrooms->members);
-        }
-        $isMember = explode(',', $jc[0]??0);
+        $isMember = $c->spreMems($this->joinClass,1);
         return view('subject.index', compact('allData', 'myData', 'allClass', 'isMember'));
     }
 

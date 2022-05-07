@@ -33,7 +33,7 @@
                         </h6>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('accStore') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('acc.store', ['id' => $id??''])}}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label><strong>Judul :</strong></label>
@@ -46,17 +46,27 @@
                             <div class="form-group">
                                 <label><strong>Kelas Tujuan :</strong></label>
                                 @foreach($classroom as $clr)
+                                @foreach($isMember as $iM)
+                                @if($iM == Auth::id())
                                 <div class="form-control">
-                                    <input type="radio" name="class_rel" id="class_rel" value="{{ $clr->id }}">
+                                    <input type="radio" name="class_rel" id="class_rel" value="{{ $clr->id }}" {{ ($clr->id == ($data->classroom??'0')) ? 'checked' : '' }}>
                                     <label for="flexRadioDefault1">
                                         {{ $clr->classname }}
                                     </label>
                                 </div>
+                                @endif
+                                @endforeach
                                 @endforeach
                             </div>
+                            @if(empty($data->title))
                             <div class="form-group card text-center">
-                                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                <button type="submit" value="save" name="action" class="btn btn-success btn-sm">Save</button>
                             </div>
+                            @else
+                            <div class="form-group card text-center">
+                                <button type="submit" value="update" name="action" class="btn btn-success btn-sm">Update</button>
+                            </div>
+                            @endif
                         </form>
                     </div>
                 </div>

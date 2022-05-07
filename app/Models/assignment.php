@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class assignment extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'student',
+        'subject',
+        'file',
+        'description',
+    ];
+
+    public function subjects(){
+        return $this->belongsTo(Subject::class, 'subject', 'id');
+    }
 }
