@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>How to Use Summernote WYSIWYG Editor with Laravel? - ItSolutionStuff.com</title>
+    <title>Text Editor</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -46,16 +46,12 @@
                             <div class="form-group">
                                 <label><strong>Kelas Tujuan :</strong></label>
                                 @foreach($classroom as $clr)
-                                @foreach($isMember as $iM)
-                                @if($iM == Auth::id())
                                 <div class="form-control">
                                     <input type="radio" name="class_rel" id="class_rel" value="{{ $clr->id }}" {{ ($clr->id == ($data->classroom??'0')) ? 'checked' : '' }}>
                                     <label for="flexRadioDefault1">
                                         {{ $clr->classname }}
                                     </label>
                                 </div>
-                                @endif
-                                @endforeach
                                 @endforeach
                             </div>
                             @if(empty($data->title))

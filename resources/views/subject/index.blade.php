@@ -25,11 +25,66 @@
                         <td>{{ $subject->description }}</td>
                         <td class="center">
                             @if($myData->myRole == "dosen")
-                            <a href="subjectdelete/{{ $subject->id }}" class="a"><button class="action btn" onclick="return confirm('yakin?');" id="delete">Delete</button></a>
+                            <a href="subjectdelete/{{ $subject->id }}" class="a"><button class="action btn"
+                                    onclick="return confirm('yakin?');" id="delete">Delete</button></a>
+                            <a data-target="#assignstore-{{$subject->id}}" data-toggle="modal"
+                                class="a btn btn-warning"> Tugaskan </a>
                             @endif
-                            <a href="{{ $subject->file }}" class="a"><button class="action btn" id="download">Lihat</button></a>
+                            @if($myData->myRole == "mahasiswa")
+                            <a href="{{ $subject->file }}"><button class="action btn btn-info">Lihat Tugas</button></a>
+                            @endif
+                            <a href="{{ $subject->file }}" class="a"><button class="action btn"
+                                    id="download">Lihat</button></a>
                         </td>
                     </tr>
+
+                    <div class="modal fade" id="assignstore-{{$subject->id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal root -->
+                                <div class="m-header">
+                                    <button style="font-size: 50px" class="close" data-dismiss="modal">×</button>
+                                    <h2 class="myModalLabel"> Buat Tugas </h2>
+                                </div>
+                                <div class="inputs">
+                                    <div class="content">
+                                        <div class="col-md-12">
+                                            <form action="{{ route('create.assign') }}" method="post"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row mb-3">
+                                                    <label for="formFile"
+                                                        class="col-md-4 col-form-label text-md-end">File
+                                                        Upload(*pdf)</label>
+                                                    <div class="col-md-6">
+                                                        <input type="file" onchange="validateSize(this, 10240)"
+                                                            accept="application/pdf" id="assignFile" name="assignFile">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="name"
+                                                        class="col-md-4 col-form-label text-md-end">{{ __("Subject") }}</label>
+                                                    <div class="col-md-6">
+                                                        <input value="{{$subject->title}}">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-0">
+                                                    <div class="col-md-6 offset-md-4">
+                                                        <button id="upload-assign" type="submit"
+                                                            class="btn btn-primary">
+                                                            {{ __('Submit') }}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     @endif
                     @endforeach
                     @endforeach
@@ -59,13 +114,15 @@
                         <label class="col-md-4 col-form-label text-md-end" for="student">{{ __('Nama Judul')
                             }}</label>
                         <div class="col-md-6">
-                            <input onkeyup="symbolBoundaries('title')" id="title" name="title" class="form-control" required>
+                            <input onkeyup="symbolBoundaries('title')" id="title" name="title" class="form-control"
+                                required>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="formFile" class="col-md-4 col-form-label text-md-end">File Upload(*pdf)</label>
                         <div class="col-md-6">
-                            <input type="file" onchange="validateSize(this, 10240)" accept="application/pdf" id="file" name="file" class="file">
+                            <input type="file" onchange="validateSize(this, 10240)" accept="application/pdf" id="file"
+                                name="file" class="file">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -110,10 +167,9 @@
                 alert("Semua Wajib di isi kecuali KETERANGAN");
                 return false;
             }
-
-
         });
     });
+
 </script>
 
 @endsection

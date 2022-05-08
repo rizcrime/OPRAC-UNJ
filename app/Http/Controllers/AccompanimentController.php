@@ -32,8 +32,7 @@ class AccompanimentController extends Controller
         $classroom = Classroom::get();
         $data = Accompaniment::where('id', $id)->first();
         $datas = Accompaniment::with('classrooms')->get();
-        $isMember = $c->spreMems($datas,1);
-        return view('accompaniment.create', compact('classroom', 'data', 'id', 'isMember'));
+        return view('accompaniment.create', compact('classroom', 'data', 'id', 'datas'));
     }
 
     public function store(Request $request, $id)

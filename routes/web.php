@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/subjectstore', 'SubjectController@store')->name('subject.post');
 
     Route::get('/assignment', 'AssignmentController@index');
+    Route::post('assignment/create', 'SubjectController@createAssign')->name('create.assign');
 
     Route::get('accompaniment/index', 'AccompanimentController@index');
     Route::get('accompaniment/create/{id}', 'AccompanimentController@show')->name('accCreate');

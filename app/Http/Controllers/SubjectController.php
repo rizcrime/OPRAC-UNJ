@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Classroom;
 use App\Models\Subject;
+use App\Models\Assignment;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\SpreadComma;
@@ -63,6 +64,23 @@ class SubjectController extends Controller
     {
         DB::table('subjects')->where('id', $id)->delete();
         return redirect('/subject')->with('success','Data Berhasil Dihapus!');
+    }
+
+    public function createAssign(Request $request)
+    {
+        $metafile = $request->filedrag;
+        $extension = $metafile->getClientOriginalExtension();
+        $filepath = 'media/subject/file';
+        $link = "$filepath\\'test.'$extension";
+        $metafile->move($filepath, "test.$extension");
+        Assignment::create([
+            'title' => 'tes',
+            'subject' => 'tes',
+            'file' => $link,
+            'description' => 'tes',
+            'due' => '2022-04-01 00:00:00'
+        ]);
+        return redirect('/assignment')->with('success','Data Berhasil Ditambahkan!');
     }
 
 }
