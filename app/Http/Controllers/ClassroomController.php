@@ -15,12 +15,12 @@ class ClassroomController extends Controller
         $this->middleware(function($request, $next){
             $mine = Auth::user()->id;
             $this->classroom = DB::table('classrooms')
-            ->join('lessons', 'classrooms.lesson', 'lessons.code')
+            ->join('lessons', 'classrooms.lesson', 'lessons.id')
             ->select('classrooms.link_g_meet as link', 'classrooms.logo as logo', 'classrooms.classname as classname', 'members', 'classrooms.id as id')
             ->whereRaw("FIND_IN_SET($mine,members)")
             ->get();
             $this->lesson = DB::table('lessons')
-            ->select('code as code', 'name as name')
+            ->select('id as id', 'name as name')
             ->get();
             $this->authRole = DB::table('users')
             ->join('roles', 'users.role', 'roles.code')

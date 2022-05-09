@@ -15,8 +15,8 @@ class CollectAssign extends Migration
     {
         Schema::create('collect_assign', function (Blueprint $table) {
             $table->id();
-            $table->string('assignment');
-            $table->string('collector');
+            $table->foreignId('assignment')->references('id')->on('assignments')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('collector')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('file')->nullable();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
