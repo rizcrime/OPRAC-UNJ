@@ -14,13 +14,13 @@ class CreateClassroomsTable extends Migration
     public function up()
     {
         Schema::create('classrooms', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->text('logo')->nullable();
             $table->text('classname');
-            $table->foreignId('lesson');
             $table->string('members')->nullable();
             $table->string('link_g_meet')->unique();
             $table->timestamps();
+            $table->foreignId('lesson')->references('id')->on('lessons')->onDelete('cascade')->onUpdate('cascade'); 
         });
     }
 

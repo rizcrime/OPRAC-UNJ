@@ -14,9 +14,8 @@ class Lessons extends Migration
     public function up()
     {
         Schema::create('lessons', function (Blueprint $table) {
-            $table->id();
-            $table->text('code')->unique();
-            $table->text('name')->unique();
+            $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }

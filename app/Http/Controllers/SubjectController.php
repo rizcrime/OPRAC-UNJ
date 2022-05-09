@@ -68,17 +68,17 @@ class SubjectController extends Controller
 
     public function createAssign(Request $request)
     {
-        $metafile = $request->filedrag;
+        $metafile = $request->assignFile;
         $extension = $metafile->getClientOriginalExtension();
-        $filepath = 'media/subject/file';
+        $filepath = 'media/subject/file/tugas';
         $link = "$filepath\\'test.'$extension";
         $metafile->move($filepath, "test.$extension");
         Assignment::create([
-            'title' => 'tes',
-            'subject' => 'tes',
+            'title' => $request->title_ass,
+            'subject' => $request->id_ass,
             'file' => $link,
-            'description' => 'tes',
-            'due' => '2022-04-01 00:00:00'
+            'description' => $request->desc_ass,
+            'due' => $request->due_ass
         ]);
         return redirect('/assignment')->with('success','Data Berhasil Ditambahkan!');
     }

@@ -54,7 +54,7 @@
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="row mb-3">
-                                                    <label for="formFile"
+                                                    <label for="assignFile"
                                                         class="col-md-4 col-form-label text-md-end">File
                                                         Upload(*pdf)</label>
                                                     <div class="col-md-6">
@@ -62,11 +62,37 @@
                                                             accept="application/pdf" id="assignFile" name="assignFile">
                                                     </div>
                                                 </div>
+                                                <div class="row mb-3" hidden>
+                                                    <div class="col-md-6">
+                                                        <input id="id_ass" name="id_ass" value="{{$subject->id}}">
+                                                    </div>
+                                                </div>
                                                 <div class="row mb-3">
-                                                    <label for="name"
+                                                    <label for="subject"
                                                         class="col-md-4 col-form-label text-md-end">{{ __("Subject") }}</label>
                                                     <div class="col-md-6">
-                                                        <input value="{{$subject->title}}">
+                                                        <input id="subject-ass" name="subject-ass" value="{{$subject->title}}" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="title_ass"
+                                                        class="col-md-4 col-form-label text-md-end">{{ __("Title") }}</label>
+                                                    <div class="col-md-6">
+                                                        <input id="title_ass" name="title_ass">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="desc_ass"
+                                                        class="col-md-4 col-form-label text-md-end">{{ __("Description") }}</label>
+                                                    <div class="col-md-6">
+                                                        <input id="desc_ass" name="desc_ass">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="due"
+                                                        class="col-md-4 col-form-label text-md-end">{{ __("Deadline") }}</label>
+                                                    <div class="col-md-6">
+                                                        <input id="due_ass" name="due_ass" type="date">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-0">

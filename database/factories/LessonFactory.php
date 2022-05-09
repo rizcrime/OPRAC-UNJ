@@ -15,7 +15,6 @@ class LessonFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word(),
-            'code' => $this->faker->unique()->randomNumber(5, true),
         ];
     }
 }
