@@ -11,7 +11,7 @@
         <div class="card-body">
             <p name="assignment" id="assignment" hidden>{{ $ad->subjects->id }}</p>
             <h5 class="card-title"><strong>Kelas</strong> : {{ $ad->subjects->title }}</h5>
-            <p class="card-text"><strong>Tugas</strong> : {{ $ad->title }}</p>
+            <p class="card-text"><strong>Catatan</strong> : {{ $ad->subjects->description }}</p>
             <a href="#" class="btn btn-primary">Assign</a>
         </div>
         <div class="card-footer text-muted">

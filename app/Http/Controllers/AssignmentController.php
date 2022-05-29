@@ -25,6 +25,7 @@ class AssignmentController extends Controller
     public function index(){
         $c = new SpreadComma;
         $allData = $this->datas;
+        // return $allData;
         $isMember = $c->spreMems($this->datas,2);
         return view('subject.assignment', compact('allData', 'isMember'));
     }

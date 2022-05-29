@@ -21,18 +21,13 @@
         </div>
         @endforeach
     </div>
-    @if($authRole == 'dosen')
-    <div class="row justify-content-center">
-        <div class="card" style="width: 18rem; margin: 2%">
-            <div class="card-body">
-                <a href="#signupModal" data-toggle="modal"><img src="{{ asset('media/add.png') }}" width="100%"
-                        height="100%" /></a>
-            </div>
-        </div>
-    </div>
+    @if($authRole == "dosen")
+    <a href="#signupModal" data-toggle="modal" class="float">
+        <i class="fa fa-plus my-float"></i>
+    </a>
     @endif
 </div>
-<div class="modal" id="signupModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="signupModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal root -->
