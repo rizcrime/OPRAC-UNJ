@@ -15,6 +15,6 @@ class Page extends Model
 
     public function contents()
     {
-        return $this->hasMany(Content::class, 'id', 'page');
+        return $this->hasMany(Content::class, 'page', 'id');
     }
 }

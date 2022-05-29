@@ -1,35 +1,36 @@
-@extends('layouts.app') @section('content')
-<div class="container">
-    <div class="row" style="justify-content: center; margin: 2%">
+@extends('layouts.app')
+@section('content')
+<div class="container-fluid flex-wrap">
+    <div class="row justify-content-center">
         @foreach($classroom as $item)
-        <div class="col-sm-6 card" style="width: 18rem; margin: 2%; padding: 5px">
-            <a href="classroomdelete/{{ $item->id }}"><button onclick="return confirm('yakin?');" class="btn-close"
-                    aria-label="Close"></button></a>
-            <img style="padding: 5%; width: 70%; height: 70%; margin: auto" src="{{ asset($item->logo) }}"
-                class="card-img-top" />
-            <div class="card-body" style="margin-bottom: 20px">
-                <a style="
-                        font-weight: 700;
-                        font-size: 12px;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        display: -webkit-box;
-                        -webkit-line-clamp: 2; /* number of lines to show */
-                        line-clamp: 2;
-                        -webkit-box-orient: vertical;
-                    " class="card-text" href="{{ $item->link }}">{{
-                    $item->classname }}</a>
-            </div>
+        <div class="card" style="width: 18rem; margin: 2%">
+            <a href="{{$item->link}}">
+                <div class="card-header">
+                    <img style="object-fit:cover; height:25vh; width:100%" src="{{ asset($item->logo) }}">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-limit">
+                        {{$item->classname}}</h5>
+                    <p class="card-text text-limit">{{$item->ln}}</p>
+                </div>
+                <div class="card-footer d-flex h-100" onclick="return confirm('Are you sure?');">
+                    <a href="classroomdelete/{{ $item->id }}"
+                        class="align-self-end btn btn-danger form-control">Delete</a>
+                </div>
+            </a>
         </div>
-        @endforeach @if($authRole == 'dosen')
-        <div id="create-class" class="col-sm-6 card" style="width: 18rem; margin: 2%">
+        @endforeach
+    </div>
+    @if($authRole == 'dosen')
+    <div class="row justify-content-center">
+        <div class="card" style="width: 18rem; margin: 2%">
             <div class="card-body">
                 <a href="#signupModal" data-toggle="modal"><img src="{{ asset('media/add.png') }}" width="100%"
                         height="100%" /></a>
             </div>
         </div>
-        @endif
     </div>
+    @endif
 </div>
 <div class="modal" id="signupModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -128,6 +129,18 @@
             enableFiltering: true,
         });
     });
+
 </script>
+
+<style>
+    .text-limit {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+
+</style>
 
 @endsection

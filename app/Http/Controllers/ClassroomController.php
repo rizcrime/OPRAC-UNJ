@@ -16,7 +16,7 @@ class ClassroomController extends Controller
             $mine = Auth::user()->id;
             $this->classroom = DB::table('classrooms')
             ->join('lessons', 'classrooms.lesson', 'lessons.id')
-            ->select('classrooms.link_g_meet as link', 'classrooms.logo as logo', 'classrooms.classname as classname', 'members', 'classrooms.id as id')
+            ->select('classrooms.link_g_meet as link', 'classrooms.logo as logo', 'classrooms.classname as classname', 'members', 'classrooms.id as id', 'lessons.name as ln')
             ->whereRaw("FIND_IN_SET($mine,members)")
             ->get();
             $this->lesson = DB::table('lessons')
