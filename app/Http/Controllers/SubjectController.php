@@ -44,7 +44,6 @@ class SubjectController extends Controller
         $title = $request->title;
         $desc = $request->desc;
         $roomCls = $request->roomc;
-        $due = $request->due_ass;
         // File Handler
         $metafile = $request->file;
         $extension = $metafile->getClientOriginalExtension();
@@ -56,7 +55,6 @@ class SubjectController extends Controller
             'title' => $title,
             'description' => $desc,
             'classroom' => $roomCls,
-            'due' => $due,
             'file' => ($request->has('file')) ?  "$link" : "no file",
         ]);
         return redirect('/subject')->with(['success' => 'Data Berhasil Disimpan!']);

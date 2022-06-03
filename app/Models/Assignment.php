@@ -14,6 +14,7 @@ class Assignment extends Model
         'subject',
         'file',
         'description',
+        'due'
     ];
 
     public function subjects(){

@@ -25,9 +25,13 @@ class AssignmentController extends Controller
     public function index(){
         $c = new SpreadComma;
         $allData = $this->datas;
-        // return $allData;
+        $authRole = DB::table('users')
+            ->join('roles', 'users.role', 'roles.code')
+            ->select('users.name as userName', 'roles.name as roleName')
+            ->where('users.id', '=', Auth::id())
+            ->first();
         $isMember = $c->spreMems($this->datas,2);
-        return view('subject.assignment', compact('allData', 'isMember'));
+        return view('subject.assignment', compact('allData', 'isMember', 'authRole'));
     }
 
     public function collect()

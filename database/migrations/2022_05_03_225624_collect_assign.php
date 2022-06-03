@@ -20,6 +20,7 @@ class CollectAssign extends Migration
             $table->string('file')->nullable();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
+            $table->string('score')->nullable();
             $table->timestamps();
         });
     }

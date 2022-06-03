@@ -86,10 +86,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="due"
+                                                    <label for="due_ass"
                                                         class="col-md-4 col-form-label text-md-end">{{ __("Deadline") }}</label>
                                                     <div class="col-md-6">
-                                                        <input id="due_ass" name="due_ass" type="date">
+                                                        <input type="datetime-local" id="due_ass"
+                                                            name="due_ass" val>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-0">
@@ -191,7 +192,6 @@
             }
         });
     });
-
 </script>
 
 @endsection
