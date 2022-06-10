@@ -11,19 +11,21 @@
                     <tr>
                         <th class="center">Judul</th>
                         <th class="center">Pengumpul</th>
-                        <th class="text-center">Waktu Pengumpulan</th>
+                        <th class="text-center">Note</th>
                         <th class="center">Nilai</th>
                         <th class="center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($allData as $ad)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$ad->title}}</td>
+                        <td>{{$ad->name}}</td>
+                        <td>{{$ad->description}}</td>
+                        <td>{{$ad->score}}</td>
                         <td></td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

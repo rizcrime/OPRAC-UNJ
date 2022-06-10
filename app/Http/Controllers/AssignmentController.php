@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Collect;
 use App\Models\Assignment;
 use App\Helpers\SpreadComma;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -47,6 +48,7 @@ class AssignmentController extends Controller
             'file' => $this->file,
             'description' => $this->description,
             'score' => '0',
+            'created_at' => Carbon::now()->toDateTimeString()
         ]);
         return redirect('/classroom')->with(['success' => 'Tugas berhasil dikumpulkan']);
     }
