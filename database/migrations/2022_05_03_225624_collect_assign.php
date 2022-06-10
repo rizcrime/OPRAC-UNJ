@@ -18,7 +18,6 @@ class CollectAssign extends Migration
             $table->foreignId('assignment')->references('id')->on('assignments')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('collector')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('file')->nullable();
-            $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('score')->nullable();
             $table->timestamps();

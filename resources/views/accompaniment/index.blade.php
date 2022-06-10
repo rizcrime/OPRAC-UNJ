@@ -7,7 +7,7 @@
 </style>
 <link href="{{ asset('css/fab.css') }}" rel="stylesheet">
 @foreach($data as $key=>$value)
-<div class="container">
+<div class="container-fluid flex-wrap">
     @foreach ($value as $val)
     <div id="s{{ $val->classroom }}">
     @endforeach

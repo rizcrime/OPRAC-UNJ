@@ -91,7 +91,7 @@
                             <a class="nav-link text-warning kuat" href="../accompaniment/index">Accompaniment</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-warning kuat" href="#">Evaluation</a>
+                            <a class="nav-link text-warning kuat" href="../evaluation/index">Evaluation</a>
                         </li>
                     </ul>
                     @endif

@@ -5,20 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Assignment extends Model
+class Collect extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'student',
-        'subject',
+        'assignment',
+        'collector',
         'file',
         'title',
         'description',
-        'due'
+        'score',
     ];
-
-    public function subjects(){
-        return $this->belongsTo(Subject::class, 'subject', 'id');
-    }
 }

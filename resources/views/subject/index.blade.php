@@ -28,9 +28,6 @@
                             <a data-target="#assignstore-{{$subject->id}}" data-toggle="modal"
                                 class="a btn btn-warning"> Tugaskan </a>
                             @endif
-                            @if($myData->myRole == "mahasiswa")
-                            <a href="{{ $subject->file }}"><button class="action btn btn-info">Lihat Tugas</button></a>
-                            @endif
                             <a href="{{ $subject->file }}"><button class="action btn" id="download">Lihat</button></a>
                         </td>
                     </tr>

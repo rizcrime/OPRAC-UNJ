@@ -17,6 +17,7 @@ class CreateAssignmentsTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId('subject')->references('id')->on('subjects')->onDelete('cascade');
             $table->string('file')->nullable();
+            $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->timestamp('due')->nullable();
             $table->timestamps();

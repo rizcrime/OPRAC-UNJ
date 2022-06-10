@@ -27,12 +27,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/subject', 'SubjectController@index');
     Route::get('/subjectdelete/{id}', 'SubjectController@destroy');
     Route::post('/subjectstore', 'SubjectController@store')->name('subject.post');
+    Route::post('assignment/create', 'SubjectController@createAssign')->name('create.assign');
 
     Route::get('/assignment', 'AssignmentController@index');
-    Route::post('assignment/create', 'SubjectController@createAssign')->name('create.assign');
+    Route::get('/assignment/{id}', 'AssignmentController@destroy');
+    Route::post('/assignment/collect', 'AssignmentController@collect')->name('assign.collect');
 
     Route::get('accompaniment/index', 'AccompanimentController@index');
     Route::get('accompaniment/create/{id}', 'AccompanimentController@show')->name('accCreate');
     Route::post('accompaniment/store/{id}', 'AccompanimentController@store')->name('acc.store');
     Route::get('accompaniment/delete/{id}', 'AccompanimentController@destroy')->name('accDel');
+
+    Route::get('evaluation/index', 'EvaluationController@index');
 });

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Collect;
 use App\Models\Assignment;
 use App\Helpers\SpreadComma;
 use Illuminate\Support\Facades\Auth;
@@ -34,15 +34,21 @@ class AssignmentController extends Controller
         return view('subject.assignment', compact('allData', 'isMember', 'authRole'));
     }
 
+    public function destroy($id){
+        DB::table('assignments')->where('id', $id)->delete();
+        return redirect('assignment')->with('success','Data Berhasil Dihapus!');
+    }
+
     public function collect()
     {
-        DB::create([
+        DB::table('collect_assign')->insert([
             'assignment' => $this->assignment,
             'collector' => Auth::user()->id,
             'file' => $this->file,
-            'title' => $this->title,
             'description' => $this->description,
+            'score' => '0',
         ]);
+        return redirect('/classroom')->with(['success' => 'Tugas berhasil dikumpulkan']);
     }
 
 }
