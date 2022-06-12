@@ -6,7 +6,7 @@
         @foreach($isMember as $iM)
         @if($iM == Auth::id())
         @php($date_facturation = \Carbon\Carbon::parse($ad->due))
-        @if (!$date_facturation->isPast())
+        @if (!$date_facturation->isPast()||$authRole->roleName=='dosen')
         <div class="card text-center" style="margin: 2%">
             <div class="card-header text-light bg-dark">
                 <strong>Ditugaskan pada</strong> {{ date('l, d-F-Y H:m', strtotime($ad->created_at)) }}
@@ -20,9 +20,9 @@
                     <div class="row">
                         <div class="col text-center">
                             @if($authRole->roleName=='dosen')
-                            <a href="assignment/{{ $ad->id }}" class="btn btn-danger justify-content-center">Delete</a>
+                            <a href="assignment/{{ $ad->id }}" class="btn btn-danger justify-content-center" onclick="return confirm('Are you sure?');">Delete</a>
                             @elseif($authRole->roleName=='mahasiswa')
-                            <a href="#signupModal{{$ad->id}}" data-toggle="modal" class="btn btn-success justify-content-center">Assign</a>
+                            <a href="#signupModal{{$ad->id}}" data-toggle="modal" class="btn btn-success justify-content-center">Collect</a>
                             @endif
                         </div>
                     </div>

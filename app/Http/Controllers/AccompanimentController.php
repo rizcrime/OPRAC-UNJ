@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Accompaniment;
 use App\Models\Classroom;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Helpers\SpreadComma;
 
 class AccompanimentController extends Controller
@@ -22,8 +24,17 @@ class AccompanimentController extends Controller
 
     public function index()
     {
-        $data = Accompaniment::with('classrooms')->get()->groupBy('classrooms.classname');
-        return view('accompaniment.index', compact('data'));
+        $datas = Accompaniment::with('classrooms')->get();
+        $sc = new SpreadComma;
+        $joinClass = Accompaniment::with('classrooms')->get();
+        $isMember = $sc->spreMems($joinClass,1);
+        $data = $datas->groupBy('classrooms.classname');
+        $authRole = DB::table('users')
+            ->join('roles', 'users.role', 'roles.code')
+            ->select('users.name as userName', 'roles.name as roleName')
+            ->where('users.id', '=', Auth::id())
+            ->first();
+        return view('accompaniment.index', compact('data', 'authRole', 'isMember'));
     }
 
     public function show($id)
@@ -31,7 +42,7 @@ class AccompanimentController extends Controller
         $c = new SpreadComma;
         $classroom = Classroom::get();
         $data = Accompaniment::where('id', $id)->first();
-        $datas = Accompaniment::with('classrooms')->get();
+        $datas = Accompaniment::with('classrooms')->get();        
         return view('accompaniment.create', compact('classroom', 'data', 'id', 'datas'));
     }
 

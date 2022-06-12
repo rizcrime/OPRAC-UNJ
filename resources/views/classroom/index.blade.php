@@ -10,13 +10,15 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title text-limit">
-                        {{$item->classname}}</h5>
+                        {{$item->classname}}
+                    </h5>
                     <p class="card-text text-limit">{{$item->ln}}</p>
                 </div>
+                @if($authRole=='dosen')
                 <div class="card-footer d-flex h-100" onclick="return confirm('Are you sure?');">
-                    <a href="classroomdelete/{{ $item->id }}"
-                        class="align-self-end btn btn-danger form-control">Delete</a>
+                    <a href="classroomdelete/{{ $item->id }}" class="align-self-end btn btn-danger form-control">Delete</a>
                 </div>
+                @endif
             </a>
         </div>
         @endforeach
@@ -32,9 +34,7 @@
         <div class="modal-content">
             <!-- Modal root -->
             <div class="m-header">
-                <button style="font-size: 50px" class="close" data-dismiss="modal">
-                    ×
-                </button>
+                <i class="bi bi-x-circle-fill btn" style="color: #fc3d03; height:5%; width:5%;" data-dismiss="modal"></i>
                 <h2 class="myModalLabel">Tambah Virtual Kelas</h2>
             </div>
             <!-- Modal body -->
@@ -44,22 +44,19 @@
                     <div class="row mb-3">
                         <label for="formFile" class="col-md-4 col-form-label text-md-end">Logo Kelas(*Image)</label>
                         <div class="col-md-6">
-                            <input type="file" onchange="validateSize(this, 1024)" accept="image/png" id="file"
-                                name="file" class="file">
+                            <input type="file" onchange="validateSize(this, 1024)" accept="image/png" id="file" name="file" class="file">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-md-4 col-form-label text-md-end" for="student">{{ __("Nama Kelas") }}</label>
                         <div class="col-md-6">
-                            <input onkeyup="symbolBoundaries('classname')" id="classname" name="classname"
-                                class="form-control" required />
+                            <input onkeyup="symbolBoundaries('classname')" id="classname" name="classname" class="form-control" required />
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __("Room Master") }}</label>
                         <div class="col-md-6">
-                            <input value="{{Auth::User()->name}}" id="rm" name="rm" class="form-control" readonly
-                                disabled />
+                            <input value="{{Auth::User()->name}}" id="rm" name="rm" class="form-control" readonly disabled />
                             <input type="hidden" id="rm" name="rm" class="form-control" value="{{Auth::User()->id}}" />
                         </div>
                     </div>
@@ -119,12 +116,11 @@
     </div>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         jQuery("#student").multiselect({
             enableFiltering: true,
         });
     });
-
 </script>
 
 <style>
@@ -135,7 +131,6 @@
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
     }
-
 </style>
 
 @endsection

@@ -45,12 +45,13 @@ class AssignmentController extends Controller
         DB::table('collect_assign')->insert([
             'assignment' => $this->assignment,
             'collector' => Auth::user()->id,
+            'assessor' => $this->datas[0]->subjects->classrooms->members[0],
             'file' => $this->file,
             'description' => $this->description,
             'score' => '0',
             'created_at' => Carbon::now()->toDateTimeString()
         ]);
-        return redirect('/classroom')->with(['success' => 'Tugas berhasil dikumpulkan']);
+        return redirect('/evaluation/index')->with(['success' => 'Tugas berhasil dikumpulkan']);
     }
 
 }

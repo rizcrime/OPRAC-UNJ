@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('accompaniment/create/{id}', 'AccompanimentController@show')->name('accCreate');
     Route::post('accompaniment/store/{id}', 'AccompanimentController@store')->name('acc.store');
     Route::get('accompaniment/delete/{id}', 'AccompanimentController@destroy')->name('accDel');
-
+    
     Route::get('evaluation/index', 'EvaluationController@index');
+    Route::get('/evaluationdelete/{id}', 'EvaluationController@destroy');
+    Route::post('/editscore/{id}', 'EvaluationController@edit_score')->name('score_edt.post');
 });
