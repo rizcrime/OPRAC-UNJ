@@ -22,7 +22,7 @@
         <hr class="divider" />
         <div class="row gx-4 gx-lg-5">
             @foreach($data_content as $dc)
-            @if($dc->pages->name == 'services')
+            @if($dc->pages->name == 'introduce')
             <div class="col-lg-3 col-md-6 text-center">
                 <div class="mt-5">
                     <div class="mb-2"><i class="{{$dc->image}} fs-1 text-primary"></i></div>
@@ -40,7 +40,7 @@
     <div class="splide__track">
         <ul class="splide__list">
             @foreach($data_conte as $dc)
-            @if($dc->name == 'interns')
+            @if($dc->name == 'gallery')
             @foreach($dc->contents as $dcc)
             <li class="splide__slide">
                 <img class="img-rounded" src="{{$dcc->image}}" alt="No Image, 404 issue">

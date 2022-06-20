@@ -3,8 +3,8 @@
 <div class="container-fluid flex-wrap">
     <div class="row justify-content-center">
         @foreach ($allData as $ad)
-        @foreach($isMember as $iM)
-        @if($iM == Auth::id())
+        @foreach(explode(',', $ad->subjects->classrooms->members) as $member)
+        @if($member == Auth::id())
         @php($date_facturation = \Carbon\Carbon::parse($ad->due))
         @if (!$date_facturation->isPast()||$authRole->roleName=='dosen')
         <div class="card text-center" style="margin: 2%">

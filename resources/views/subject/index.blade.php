@@ -16,17 +16,17 @@
                 </thead>
                 <tbody>
                     @foreach($allData as $subject)
-                    @foreach($isMember as $iM)
-                    @if($iM == Auth::id())
+                    @foreach(explode(',', $subject->classrooms->members) as $member)
+                    @if($member == Auth::id())
                     <tr id="rowT">
                         <td class="align-middle">{{ $subject->title }}</td>
                         <td class="align-middle">{{ $subject->description }}</td>
                         <td class="center align-middle">
                             @if($myData->myRole == "dosen")
                             <a href="subjectdelete/{{ $subject->id }}"><button class="action btn"
-                                    onclick="return confirm('Are you sure?');" id="delete">Delete</button></a>
+                            onclick="return confirm('Are you sure?');" id="delete">Delete</button></a>
                             <a data-target="#assignstore-{{$subject->id}}" data-toggle="modal"
-                                class="a btn btn-warning"> Tugaskan </a>
+                            class="a btn btn-warning"> Tugaskan </a>
                             @endif
                             <a href="{{ $subject->file }}"><button class="action btn" id="download">Lihat</button></a>
                         </td>
@@ -44,18 +44,18 @@
                                     <div class="content">
                                         <div class="col-md-12">
                                             <form action="{{ route('create.assign') }}" method="post"
-                                                enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="row mb-3">
-                                                    <label for="assignFile"
-                                                        class="col-md-4 col-form-label text-md-end">File
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row mb-3">
+                                                <label for="assignFile"
+                                                class="col-md-4 col-form-label text-md-end">File
                                                         Upload(*pdf)</label>
-                                                    <div class="col-md-6">
-                                                        <input type="file" onchange="validateSize(this, 10240)"
+                                                        <div class="col-md-6">
+                                                            <input type="file" onchange="validateSize(this, 10240)"
                                                             accept="application/pdf" id="assignFile" name="assignFile">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row mb-3" hidden>
+                                                    <div class="row mb-3" hidden>
                                                     <div class="col-md-6">
                                                         <input id="id_ass" name="id_ass" value="{{$subject->id}}">
                                                     </div>
@@ -63,38 +63,38 @@
                                                 <div class="row mb-3">
                                                     <label for="subject"
                                                         class="col-md-4 col-form-label text-md-end">{{ __("Subject") }}</label>
-                                                    <div class="col-md-6">
-                                                        <input id="subject-ass" name="subject-ass"
+                                                        <div class="col-md-6">
+                                                            <input id="subject-ass" name="subject-ass"
                                                             value="{{$subject->title}}" disabled>
+                                                        </div>
                                                     </div>
-                                                </div>
                                                 <div class="row mb-3">
                                                     <label for="title_ass"
-                                                        class="col-md-4 col-form-label text-md-end">{{ __("Title") }}</label>
+                                                    class="col-md-4 col-form-label text-md-end">{{ __("Title") }}</label>
                                                     <div class="col-md-6">
                                                         <input id="title_ass" name="title_ass">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <label for="desc_ass"
-                                                        class="col-md-4 col-form-label text-md-end">{{ __("Description") }}</label>
+                                                    class="col-md-4 col-form-label text-md-end">{{ __("Description") }}</label>
                                                     <div class="col-md-6">
                                                         <input id="desc_ass" name="desc_ass">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <label for="due_ass"
-                                                        class="col-md-4 col-form-label text-md-end">{{ __("Deadline") }}</label>
+                                                    class="col-md-4 col-form-label text-md-end">{{ __("Deadline") }}</label>
                                                     <div class="col-md-6">
                                                         <input type="datetime-local" id="due_ass"
                                                             name="due_ass" val>
-                                                    </div>
+                                                        </div>
                                                 </div>
                                                 <div class="row mb-0">
                                                     <div class="col-md-6 offset-md-4">
                                                         <button id="upload-assign" type="submit"
-                                                            class="btn btn-primary">
-                                                            {{ __('Submit') }}
+                                                        class="btn btn-primary">
+                                                        {{ __('Submit') }}
                                                         </button>
                                                     </div>
                                                 </div>

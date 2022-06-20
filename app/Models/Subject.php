@@ -22,7 +22,7 @@ class Subject extends Model
     }
 
     public function assignments(){
-        return $this->hasMany(AssignmentController::class, 'id', 'subject');
+        return $this->hasMany(Assignment::class, 'id', 'subject');
     }
 
 }

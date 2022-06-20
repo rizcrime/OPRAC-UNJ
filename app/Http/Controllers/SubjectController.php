@@ -32,11 +32,14 @@ class SubjectController extends Controller
     public function index()
     {
         $c = new SpreadComma;
-        $allData = $this->allData;
+        $allData = $this->joinClass;
         $myData = $this->mineData;
         $allClass = $this->allClass;
-        $isMember = $c->spreMems($this->joinClass,1);
-        return view('subject.index', compact('allData', 'myData', 'allClass', 'isMember'));
+        $isMember = [];
+        for($i=0; $i<count($this->joinClass); $i++){
+            array_push($isMember, $this->joinClass[$i]->classrooms->members);
+        }
+        return view('subject.index', compact('allData', 'myData', 'allClass'));
     }
 
     public function store(Request $request)

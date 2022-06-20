@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Collect;
 use App\Models\Assignment;
-use App\Helpers\SpreadComma;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -24,15 +22,18 @@ class AssignmentController extends Controller
     }
 
     public function index(){
-        $c = new SpreadComma;
         $allData = $this->datas;
+        $b = [];
+        foreach($this->datas as $d){
+            array_push($b, $d); 
+        }
+        // return $b;
         $authRole = DB::table('users')
             ->join('roles', 'users.role', 'roles.code')
             ->select('users.name as userName', 'roles.name as roleName')
             ->where('users.id', '=', Auth::id())
             ->first();
-        $isMember = $c->spreMems($this->datas,2);
-        return view('subject.assignment', compact('allData', 'isMember', 'authRole'));
+        return view('subject.assignment', compact('allData', 'authRole'));
     }
 
     public function destroy($id){
@@ -45,10 +46,12 @@ class AssignmentController extends Controller
         DB::table('collect_assign')->insert([
             'assignment' => $this->assignment,
             'collector' => Auth::user()->id,
-            'assessor' => $this->datas[0]->subjects->classrooms->members[0],
             'file' => $this->file,
             'description' => $this->description,
+            'proof'=>'',
+            'proof_2'=>'',
             'score' => '0',
+            'score_2' => '0',
             'created_at' => Carbon::now()->toDateTimeString()
         ]);
         return redirect('/evaluation/index')->with(['success' => 'Tugas berhasil dikumpulkan']);

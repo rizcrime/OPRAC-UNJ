@@ -18,8 +18,8 @@ class EvaluationController extends Controller
                 'assignments.title',
                 'users.name',
                 'collect_assign.score',
+                'collect_assign.score_2',
                 'collect_assign.collector',
-                'collect_assign.assessor'
             )
             ->join('users', 'collect_assign.collector', 'users.id')->get();
         $authRole = DB::table('users')

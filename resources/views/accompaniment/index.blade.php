@@ -47,9 +47,7 @@
 @endif
 @endforeach
 @endforeach
-@if($authRole->roleName!='mahasiswa')
 <a href="../accompaniment/create/0" class="float">
     <i class="fa fa-plus my-float"></i>
 </a>
-@endif
 @endsection
