@@ -84,7 +84,7 @@ return [
             'driver' => 'pgsql',
             'host' => $DATABASE_URL["ec2-99-80-170-190.eu-west-1.compute.amazonaws.com"],
             'port' => $DATABASE_URL["5432"],
-            'database' => ltrim($DATABASE_URL["postgres://qlinfoymyrvoij:811570444a185118c1db45ecd8611b083b57cdf09b20a56469e0bfa055b2abfe@ec2-99-80-170-190.eu-west-1.compute.amazonaws.com:5432/d1vgvncdbb4js1"], "/"),
+            'database' => ltrim($DATABASE_URL["path"], "/"),
             'username' => $DATABASE_URL["qlinfoymyrvoij"],
             'password' => $DATABASE_URL["811570444a185118c1db45ecd8611b083b57cdf09b20a56469e0bfa055b2abfe"],
             'charset' => 'utf8',
