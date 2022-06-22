@@ -19,19 +19,19 @@ class RoleSeeder extends Seeder
             [
                 [
                     "name" => "dosen",
-                    "kode" => "1",
+                    "code" => "1",
                     "created_at" => Carbon::now()->toDateTimeString(),
                     "updated_at" => Carbon::now()->toDateTimeString()
                 ],
                 [
                     "name" => "pembibing",
-                    "kode" => "2",
+                    "code" => "2",
                     "created_at" => Carbon::now()->toDateTimeString(),
                     "updated_at" => Carbon::now()->toDateTimeString()
                 ],
                 [
                     "name" => "mahasiswa",
-                    "kode" => "3",
+                    "code" => "3",
                     "created_at" => Carbon::now()->toDateTimeString(),
                     "updated_at" => Carbon::now()->toDateTimeString()
                 ],
