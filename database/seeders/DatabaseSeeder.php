@@ -3,12 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
-use App\Models\Classroom;
-use App\Models\Lesson;
-use App\Models\Role;
-use App\Models\Subject;
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -18,6 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            LessonSeeder::class,
+            RoleSeeder::class
+        ]);
         // User::factory(10)->create();
         // Classroom::factory(3)->create();
         // Lesson::factory(3)->create();
