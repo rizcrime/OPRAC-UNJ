@@ -73,7 +73,7 @@ class ClassroomController extends Controller
         $dir = "$filepath\\$cn.$extension";
         $metafile->move($filepath, "$cn.$extension");
 
-        Classroom::create([
+        Classroom::insert([
             'members' => "$rm,$pengawas,$students",
             'lesson' => $pelajaran,
             'classname' => $cn,
