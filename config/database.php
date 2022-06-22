@@ -82,11 +82,11 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => $DATABASE_URL["DB_HOST"],
-            'port' => $DATABASE_URL["DB_PORT"],
+            'host' => $DATABASE_URL["host"],
+            'port' => $DATABASE_URL["port"],
             'database' => ltrim($DATABASE_URL["path"], "/"),
-            'username' => $DATABASE_URL["DB_USERNAME"],
-            'password' => $DATABASE_URL["DB_PASSWORD"],
+            'username' => $DATABASE_URL["user"],
+            'password' => $DATABASE_URL["pass"],
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
