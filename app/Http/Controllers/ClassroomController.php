@@ -14,33 +14,33 @@ class ClassroomController extends Controller
         $this->middleware(['auth', 'verified']);
         $this->middleware(function($request, $next){
             $mine = Auth::user()->id;
-            $this->classroom .= DB::table('classrooms')
+            $this->classroom = DB::table('classrooms')
             ->join('lessons', 'classrooms.lesson', 'lessons.id')
             ->select('classrooms.link_g_meet as link', 'classrooms.logo as logo', 'classrooms.classname as classname', 'members', 'classrooms.id as id', 'lessons.name as ln')
             ->whereRaw("FIND_IN_SET($mine,members)")
             ->get();
-            $this->lesson .= DB::table('lessons')
+            $this->lesson = DB::table('lessons')
             ->select('id as id', 'name as name')
             ->get();
-            $this->authRole .= DB::table('users')
+            $this->authRole = DB::table('users')
             ->join('roles', 'users.role', 'roles.code')
             ->select('users.name as userName', 'roles.name as roleName')
-            ->where('users.id', '.=', Auth::id())
+            ->where('users.id', '=', Auth::id())
             ->first();
-            $this->allDosen .= DB::table('users')
+            $this->allDosen = DB::table('users')
             ->join('roles', 'users.role', 'roles.code')
             ->select('users.name as userName', 'roles.name as roleName', 'roles.code as code', 'users.id as idDosen')
-            ->where('roles.name', '.=', 'dosen')
+            ->where('roles.name', '=', 'dosen')
             ->get();
-            $this->allPengawas .= DB::table('users')
+            $this->allPengawas = DB::table('users')
             ->join('roles', 'users.role', 'roles.code')
             ->select('users.name as userName', 'roles.name as roleName', 'roles.code as code', 'users.id as idPengawas')
-            ->where('roles.name', '.=', 'pembimbing')
+            ->where('roles.name', '=', 'pembimbing')
             ->get();
-            $this->allMahs .= DB::table('users')
+            $this->allMahs = DB::table('users')
             ->join('roles', 'users.role', 'roles.code')
             ->select('users.name as userName', 'roles.name as roleName', 'roles.code as code', 'users.id as idMhs')
-            ->where('roles.name', '.=', 'mahasiswa')
+            ->where('roles.name', '=', 'mahasiswa')
             ->get();
             return $next($request);
         });
@@ -73,7 +73,7 @@ class ClassroomController extends Controller
         $dir = "$filepath\\$cn.$extension";
         $metafile->move($filepath, "$cn.$extension");
 
-        Classroom::insert([
+        Classroom::create([
             'members' => "$rm,$pengawas,$students",
             'lesson' => $pelajaran,
             'classname' => $cn,
