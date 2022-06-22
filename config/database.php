@@ -82,7 +82,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
-        ]
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',
