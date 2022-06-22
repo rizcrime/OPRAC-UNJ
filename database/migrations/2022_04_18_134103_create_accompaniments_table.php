@@ -16,7 +16,7 @@ class CreateAccompanimentsTable extends Migration
         Schema::create('accompaniments', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
+            $table->string('description');
             $table->string('classroom');
             $table->timestamps();
         });

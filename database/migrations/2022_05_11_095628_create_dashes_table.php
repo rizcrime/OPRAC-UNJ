@@ -16,7 +16,7 @@ class CreateDashesTable extends Migration
         Schema::create('dashes', function (Blueprint $table) {
             $table->id();
             $table->string('posted_by')->nullable();
-            $table->text('file');
+            $table->string('file');
             $table->boolean('is_video');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

@@ -15,9 +15,9 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
-            $table->text('image');
+            $table->string('image');
             $table->string('title')->nullable();
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->foreignId('page')->references('id')->on('pages')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
