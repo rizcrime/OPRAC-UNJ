@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Str;
 
-$DATABASE_URL=parse_url('http://oprac-premium.herokuapp.com');
+$DATABASE_URL=parse_url('http://oprac-premium.herokuapp.com/');
 
 return [
 
@@ -82,11 +82,11 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => 'ec2-99-80-170-190.eu-west-1.compute.amazonaws.com',
-            'port' => "465",
-            'database' => ltrim("d1vgvncdbb4js1", "/"),
-            'username' => "qlinfoymyrvoij",
-            'password' => "811570444a185118c1db45ecd8611b083b57cdf09b20a56469e0bfa055b2abfe",
+            'host' => $DATABASE_URL["host"],
+            'port' => $DATABASE_URL["port"],
+            'database' => ltrim($DATABASE_URL["path"], "/"),
+            'username' => $DATABASE_URL["user"],
+            'password' => $DATABASE_URL["pass"],
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
