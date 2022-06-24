@@ -24,7 +24,7 @@ class RoleSeeder extends Seeder
                     "updated_at" => Carbon::now()->toDateTimeString()
                 ],
                 [
-                    "name" => "pembibing",
+                    "name" => "pembimbing",
                     "code" => "2",
                     "created_at" => Carbon::now()->toDateTimeString(),
                     "updated_at" => Carbon::now()->toDateTimeString()
