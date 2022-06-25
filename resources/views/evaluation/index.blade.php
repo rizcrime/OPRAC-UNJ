@@ -22,20 +22,23 @@
                 </thead>
                 <tbody>
                     @foreach($allData as $ad=>$value)
+                    @if($isAccess == 1)
                     <tr>
                         <td class="text-center">{{$ad+1}}</td>
                         <td>{{$value->title}}</td>
                         <td>{{$value->name}}</td>
                         <td>{{$value->description}}</td>
+                        @if($authRole->roleName == 'mahasiswa')
                         <td class="text-end">{{$value->score}}</td>
                         <td class="text-end">{{$value->score_2}}</td>
+                        @endif
                         <form method="POST" action="{{ route('score_edt.post', ['id' => $value->id??'']) }}">
                             @csrf
                             @if($authRole->roleName != 'mahasiswa')
                             <td><input type="file" id="proof" name="proof"></td>
                             <td><input type="file" id="proof_2" name="proof_2"></td>
-                            <td><input value="{{$value->score}}" class="score" name="score" id="score"></td>
-                            <td><input value="{{$value->score_2}}" class="score" name="score_2" id="score_2"></td>
+                            <td><input type="number" value="{{$value->score}}" class="score" name="score" id="score"></td>
+                            <td><input type="number" value="{{$value->score_2}}" class="score" name="score_2" id="score_2"></td>
                             @endif
                             <td class="center">
                                 @if($authRole->roleName != 'mahasiswa')
@@ -45,6 +48,7 @@
                             </td>
                         </form>
                     </tr>
+                    @endif
                     @endforeach
                 </tbody>
                 @if($authRole->roleName!='mahasiswa')
@@ -54,7 +58,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <th class="text-end"  colspan="2">Total Penilaian</th>
+                        <th class="text-end" colspan="2">Total Penilaian</th>
                         <td></td>
                         <td></td>
                     </tr>
@@ -72,7 +76,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <th class="text-end"  colspan="2">Hasil</th>
+                        <th class="text-end" colspan="2">Hasil</th>
                         <td></td>
                         <td></td>
                     </tr>
@@ -83,14 +87,24 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $(".score").attr({
+            "max": 100, // substitute your own
+            "min": 0 // values (or variables) here
+        });
+    });
+</script>
+
 <style>
     tr th {
         vertical-align: middle;
     }
 
-td{
-    vertical-align: middle;
-}
+    td {
+        vertical-align: middle;
+    }
+
     table td {
         position: relative;
     }
