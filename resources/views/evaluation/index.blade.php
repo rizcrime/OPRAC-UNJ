@@ -54,31 +54,18 @@
                 @if($authRole->roleName!='mahasiswa')
                 <tfoot>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th class="text-end" colspan="2">Total Penilaian</th>
-                        <td></td>
-                        <td></td>
+                        <th class="text-end" colspan="6">Total Penilaian</th>
+                        <td class="text-end">{{$score_set[0]->sScore}}</td>
+                        <td class="text-end">{{$score_set[0]->sScore2}}</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th class="text-end" colspan="2">Rata-Rata</th>
-                        <td></td>
-                        <td></td>
+                        <th class="text-end" colspan="6">Rata-Rata</th>
+                        <td class="text-end">{{$avg_score}}</td>
+                        <td class="text-end">{{$avg_score2}}</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th class="text-end" colspan="2">Hasil</th>
-                        <td></td>
-                        <td></td>
+                        <th class="text-end" colspan="6">Hasil</th>
+                        <td class="text-center" colspan="2">{{$criteria_score}}</td>
                     </tr>
                 </tfoot>
                 @endif
@@ -90,8 +77,8 @@
 <script>
     $(document).ready(function() {
         $(".score").attr({
-            "max": 100, // substitute your own
-            "min": 0 // values (or variables) here
+            "max": 100,
+            "min": 0
         });
     });
 </script>
