@@ -12,14 +12,15 @@ class EvaluationController extends Controller
     {
         $this->middleware(['auth', 'verified']);
         $this->middleware(function ($request, $next) {
-            $this->id = 3;
+            $this->name_students = $request->name_students;
             return $next($request);
         });
     }
 
     public function index()
     {
-        $id = $this->id;
+        $id = $this->name_students;
+        $isAccess = '';
         $allData = DB::table('collect_assign')
             ->join('assignments', 'collect_assign.assignment', 'assignments.id')
             ->join('users', 'collect_assign.collector', 'users.id')
@@ -35,7 +36,6 @@ class EvaluationController extends Controller
                 'collect_assign.collector',
             )
             ->get();
-        $isAccess = '';
         $score_set = DB::table('collect_assign')
             ->where('collector', $id)
             ->select(
@@ -45,8 +45,8 @@ class EvaluationController extends Controller
                 DB::raw('sum(score_2) as sScore2'),
             )
             ->get();
-        $avg_score = $score_set[0]->sScore / $score_set[0]->cScore;
-        $avg_score2 = $score_set[0]->sScore2 / $score_set[0]->cScore2;
+        $avg_score = $this->save_div($score_set[0]->sScore, $score_set[0]->cScore);
+        $avg_score2 = $this->save_div($score_set[0]->sScore2, $score_set[0]->cScore2);
         $final_avg = round(($avg_score + $avg_score2) / 2, 0, PHP_ROUND_HALF_UP);
         $criteria_score = '';
         switch (true) {
@@ -83,6 +83,12 @@ class EvaluationController extends Controller
             default:
                 $criteria =  "Data is unbounderies";
         }
+        $authRole = DB::table('users')
+            ->join('roles', 'users.role', 'roles.code')
+            ->select('users.name as userName', 'roles.name as roleName')
+            ->where('users.id', '=', Auth::id())
+            ->first();
+        $students = DB::table('users')->where('role', 3)->get();
         foreach ($allData as $ad) {
             $member = explode(',', $ad->members);
             for ($i = 0; $i < count($member); $i++) {
@@ -93,12 +99,16 @@ class EvaluationController extends Controller
                 }
             }
         }
-        $authRole = DB::table('users')
-            ->join('roles', 'users.role', 'roles.code')
-            ->select('users.name as userName', 'roles.name as roleName')
-            ->where('users.id', '=', Auth::id())
-            ->first();
-        return view('evaluation.index', compact('allData', 'authRole', 'isAccess', 'score_set', 'avg_score', 'avg_score2', 'criteria_score'));
+        return view('evaluation.index', compact('allData', 'authRole', 'isAccess', 'score_set', 'avg_score', 'avg_score2', 'criteria_score', 'students'));
+    }
+
+    public function save_div($a, $b)
+    {
+        if ($b == 0) {
+            return $a / 1;
+        } else {
+            return $a / $b;
+        }
     }
 
     public function destroy($id)
@@ -109,6 +119,13 @@ class EvaluationController extends Controller
 
     public function edit_score(Request $request, $id)
     {
+        $title = $request->title;
+        // File Handler
+        // $metafile = $request->file;
+        // $extension = $metafile->getClientOriginalExtension();
+        // $filepath = "media/evaluation/score_proof";
+        // $dir = "$filepath\\$title.$extension";
+        // $metafile->move($filepath, "$title.$extension");
         DB::table('collect_assign')->where('id', $id)->update([
             'proof' => $request->proof,
             'proof_2' => $request->proof_2,

@@ -41,4 +41,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('evaluation/index', 'EvaluationController@index');
     Route::get('/evaluationdelete/{id}', 'EvaluationController@destroy');
     Route::post('/editscore/{id}', 'EvaluationController@edit_score')->name('score_edt.post');
+
+    Route::post('evaluation/index', 'EvaluationController@index')->name('choose.students');
 });

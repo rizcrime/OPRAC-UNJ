@@ -46,7 +46,7 @@
                                             <form action="{{ route('create.assign') }}" method="post"
                                             enctype="multipart/form-data">
                                             @csrf
-                                            <div class="row mb-3">
+                                            <!-- <div class="row mb-3">
                                                 <label for="assignFile"
                                                 class="col-md-4 col-form-label text-md-end">File
                                                         Upload(*pdf)</label>
@@ -59,7 +59,7 @@
                                                     <div class="col-md-6">
                                                         <input id="id_ass" name="id_ass" value="{{$subject->id}}">
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="row mb-3">
                                                     <label for="subject"
                                                         class="col-md-4 col-form-label text-md-end">{{ __("Subject") }}</label>

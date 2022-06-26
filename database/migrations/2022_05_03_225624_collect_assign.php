@@ -23,7 +23,6 @@ class CollectAssign extends Migration
             $table->string('proof_2')->nullable();
             $table->string('score')->nullable();
             $table->string('score_2')->nullable();
-            $table->string('final_score')->nullable();
             $table->timestamps();
         });
     }
